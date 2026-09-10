@@ -294,37 +294,31 @@ public class JwtUtil {
 ## LoginRequest:
 ```
 package com.example.demo.ex5;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 
-import javax.crypto.SecretKey;
 
-public class JwtUtil {
 
-    private static final String SECRET =
-            "mySecretKeyForJWTAuthentication12345678901234567890";
+public class LoginRequest {
 
-    private static final SecretKey KEY =
-            Keys.hmacShaKeyFor(SECRET.getBytes());
+    private String username;
+    private String password;
 
-    public static String generateToken(String username) {
-
-        return Jwts.builder()
-                .subject(username)
-                .signWith(KEY)
-                .compact();
+    public String getUsername() {
+        return username;
     }
 
-    public static String extractUsername(String token) {
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        return Jwts.parser()
-                .verifyWith(KEY)
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
+
 ```
 
 ## Output:
